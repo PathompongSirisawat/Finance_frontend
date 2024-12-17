@@ -2,8 +2,22 @@ import React from "react"
 import { Button, Table, Space, Tag, Popconfirm, Modal } from "antd"
 import { DeleteOutlined, BugOutlined, EditOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
+import { useState } from 'react';
+import EditItem from './EditItem';
 
 export default function TransactionList(props) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
+
+  const handleEdit = (item) => {
+    setCurrentItem(item);
+    setIsEditModalOpen(true);
+  };
+
+  const handleItemEdited = (updatedItem) => {
+    console.log('Updated Item:', updatedItem);
+    setIsEditModalOpen(false);
+  };
 
   const columns = [
     {
@@ -28,14 +42,19 @@ export default function TransactionList(props) {
             shape="square"
             icon={<EditOutlined />}
             style={{ backgroundColor: '#878787' }}
-            onClick={() => {
-              Modal.confirm({
-                title: "Edit the transaction"
-              })
-            }}>
+            onClick={() => handleEdit({ 
+              name: 'Sample Item', 
+              description: 'Sample Description' 
+              })}>
             Edit
           </Button>
-        
+          <EditItem
+            isOpen={isEditModalOpen}
+            item={currentItem}
+            onItemEdited={handleItemEdited}
+            onCancel={() => setIsEditModalOpen(false)}
+          />
+
 
           <Popconfirm
             title="Delete the transaction"
