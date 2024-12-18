@@ -11,8 +11,9 @@ const URL_TXACTIONS = '/api/txactions'
 
 function FinanceScreen() {
   const [summaryAmount, setSummaryAmount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false)
-  const [transactionData, setTransactionData] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
+  const [transactionData, setTransactionData] = useState([]);
+  const [editItem, setEditItem] = useState(null);
 
   const fetchItems = async () => {
     try {
