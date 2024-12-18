@@ -46,6 +46,25 @@ function FinanceScreen() {
     }
   }
 
+  const updateItem = async (item) => {
+    try {
+      setIsLoading(true)
+      const response = await axios.put(`${URL_TXACTIONS}/${item.id}`, { data: item });
+      const { id, attributes } = response.data.data;
+
+      setTransactionData(
+        transactionData.map(transaction =>
+          transaction.id === id ? { id, key: id, ...attributes } : transaction
+        )
+      );
+      setEditItem(null); 
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const handleNoteChanged = (id, note) => {
     setTransactionData(
       transactionData.map(transaction => {
