@@ -10,25 +10,24 @@ export default function EditItem({ isOpen, item, onItemEdited, onCancel }) {
     }, [isOpen, item, form]);
     const handleFormSubmit = () => {
         form.validateFields().then((formData) => {
-            onItemEdited(formData);
+            onItemEdited({ ...item, ...formData });
             form.resetFields();
-        })
-            .catch((errorInfo) => {
-                console.error('Validation Failed:', errorInfo);
-            });
+        }).catch((errorInfo) => {
+            console.error('Validation Failed:', errorInfo);
+        });
     };
     return (
         <Modal
             title="Edit Item"
             open={isOpen}
-            onOk={handleFormSubmit} 
+            onOk={handleFormSubmit}
             onCancel={() => {
-                form.resetFields(); 
-                onCancel(); 
+                form.resetFields();
+                onCancel();
             }}
         >
             <Form
-                form={form} 
+                form={form}
                 layout="vertical"
             >
                 <Form.Item

@@ -51,15 +51,15 @@ function FinanceScreen() {
       setIsLoading(true);
       const response = await axios.put(`${URL_TXACTIONS}/${item.id}`, { data: item });
       const { id, attributes } = response.data.data;
-
-      setTransactionData(
-        transactionData.map(transaction =>
+  
+      setTransactionData((prevData) =>
+        prevData.map((transaction) =>
           transaction.id === id ? { id, key: id, ...attributes } : transaction
         )
       );
       setEditItem(null); 
     } catch (err) {
-      console.log(err);
+      console.error('Error updating item:', err);
     } finally {
       setIsLoading(false);
     }
@@ -112,10 +112,7 @@ function FinanceScreen() {
             data={transactionData}
             onNoteChanged={handleNoteChanged}
             onRowDeleted={handleRowDeleted}
-            onEditItem={(item) => {
-              setEditItem(item);
-              updateItem(item); 
-            }}/>
+            onEditItem={updateItem}/>
           {editItem && (
             <div className="modal">
               <h2>กำลังแก้ไขรายการ</h2>

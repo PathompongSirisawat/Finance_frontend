@@ -15,9 +15,10 @@ export default function TransactionList(props) {
   };
 
   const handleItemEdited = (updatedItem) => {
-    console.log('Updated Item:', updatedItem);
+    props.onEditItem(updatedItem); 
     setIsEditModalOpen(false);
   };
+  
 
   const columns = [
     {
@@ -42,18 +43,14 @@ export default function TransactionList(props) {
             shape="square"
             icon={<EditOutlined />}
             style={{ backgroundColor: '#878787' }}
-            onClick={() => handleEdit({ 
-              name: 'Sample Item', 
-              description: 'Sample Description' 
-              })}>
+            onClick={() => handleEdit(record)}>
             Edit
           </Button>
           <EditItem
             isOpen={isEditModalOpen}
             item={currentItem}
             onItemEdited={handleItemEdited}
-            onCancel={() => setIsEditModalOpen(false)}
-          />
+            onCancel={() => setIsEditModalOpen(false)}/>
 
 
           <Popconfirm
