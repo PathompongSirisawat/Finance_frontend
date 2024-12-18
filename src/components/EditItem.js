@@ -9,8 +9,7 @@ export default function EditItem({ isOpen, item, onItemEdited, onCancel }) {
         }
     }, [isOpen, item, form]);
     const handleFormSubmit = () => {
-        form.validateFields()
-        form.then((formData) => {
+        form.validateFields().then((formData) => {
             onItemEdited(formData);
             form.resetFields();
         })
@@ -22,14 +21,14 @@ export default function EditItem({ isOpen, item, onItemEdited, onCancel }) {
         <Modal
             title="Edit Item"
             open={isOpen}
-            onOk={handleFormSubmit} // Submit form when pressing OK
+            onOk={handleFormSubmit} 
             onCancel={() => {
-                form.resetFields(); // Reset fields when modal is closed
-                onCancel(); // Notify parent about the cancel action
+                form.resetFields(); 
+                onCancel(); 
             }}
         >
             <Form
-                form={form} // Bind form instance
+                form={form} 
                 layout="vertical"
             >
                 <Form.Item
@@ -39,7 +38,7 @@ export default function EditItem({ isOpen, item, onItemEdited, onCancel }) {
                 >
                     <Select
                         allowClear
-                        style={{ width: "100%" }}
+                        style={{ width: "100px" }}
                         options={[
                             { value: 'income', label: 'รายรับ' },
                             { value: 'expense', label: 'รายจ่าย' },
@@ -51,7 +50,7 @@ export default function EditItem({ isOpen, item, onItemEdited, onCancel }) {
                     label="จำนวนเงิน :"
                     rules={[{ required: true, message: 'กรุณาระบุจำนวนเงิน' }]}
                 >
-                    <InputNumber placeholder="จำนวนเงิน" style={{ width: "100%" }} />
+                    <InputNumber placeholder="จำนวนเงิน" style={{ width: "100px" }} />
                 </Form.Item>
                 <Form.Item
                     name="note"
