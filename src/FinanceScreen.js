@@ -48,7 +48,7 @@ function FinanceScreen() {
 
   const updateItem = async (item) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await axios.put(`${URL_TXACTIONS}/${item.id}`, { data: item });
       const { id, attributes } = response.data.data;
 
@@ -59,11 +59,11 @@ function FinanceScreen() {
       );
       setEditItem(null); 
     } catch (err) {
-      console.log(err)
+      console.log(err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleNoteChanged = (id, note) => {
     setTransactionData(
@@ -111,7 +111,18 @@ function FinanceScreen() {
           <TransactionList
             data={transactionData}
             onNoteChanged={handleNoteChanged}
-            onRowDeleted={handleRowDeleted} />
+            onRowDeleted={handleRowDeleted}
+            onEditItem={(item) => {
+              setEditItem(item);
+              updateItem(item); 
+            }}/>
+          {editItem && (
+            <div className="modal">
+              <h2>กำลังแก้ไขรายการ</h2>
+              <p>ชื่อ: {editItem.name}</p>
+              <p>คำอธิบาย: {editItem.description}</p>
+            </div>
+          )}
         </Spin>
       </header>
     </div>
