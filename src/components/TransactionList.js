@@ -42,7 +42,11 @@ export default function TransactionList(props) {
             type="primary"
             shape="square"
             icon={<EditOutlined />}
-            style={{ backgroundColor: '#878787' }}
+            style={{ backgroundColor: '#B19CD8' ,
+              border: '2px solid #9379C2', 
+              borderRadius: '4px',
+              color: '#FFFFFF'
+            }}
             onClick={() => handleEdit(record)}>
             Edit
           </Button>
@@ -58,15 +62,34 @@ export default function TransactionList(props) {
             description="Are you sure to delete this transaction?"
             onConfirm={() => props.onRowDeleted(record.id)}
           >
-            <Button danger
+            <Button 
               type="primary"
               shape="circle"
-              icon={<DeleteOutlined />} />
+              icon={<DeleteOutlined />} 
+              style={{ backgroundColor: '#FF3333',
+                border: '2px solid #E40321',
+                color: '#FFCCCC',
+                width: '35px', 
+                height: '35px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}/>
+              
           </Popconfirm>
           <Button
             type="primary"
             shape="circle"
             icon={<BugOutlined />}
+            style={{ backgroundColor: '#3795BD',
+              border: '2px solid #146C94',
+              color: '#CFE0EB',
+              width: '35px', 
+              height: '35px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
             onClick={() => {
               Modal.info({
                 title: "Debug",

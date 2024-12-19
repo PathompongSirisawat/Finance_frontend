@@ -1,11 +1,13 @@
 import { Button, Form, Select, Input, InputNumber } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
 export default function AddItem(props) {
     return (
         <Form layout="inline" onFinish={props.onItemAdded}>
             <Form.Item
                 name="type"
                 label="ชนิด"
-        rules={[{ required: true }]}
+                rules={[{ required: true }]}
             >
                 <Select
                     allowClear
@@ -25,18 +27,28 @@ export default function AddItem(props) {
             <Form.Item
                 name="amount"
                 label="จำนวนเงิน"
-            rules={[{ required: true }]}>
+                rules={[{ required: true }]}>
                 <InputNumber placeholder="จำนวนเงิน" />
             </Form.Item>
-                <Form.Item
-                    name="note"
-                    label="หมายเหตุ"
-            rules={[{ required: true }]}>
-                    <Input placeholder="Note" />
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">Add</Button>
-                </Form.Item>
-            </Form >
+            <Form.Item
+                name="note"
+                label="หมายเหตุ"
+                rules={[{ required: true }]}>
+                <Input placeholder="Note" />
+            </Form.Item>
+            <Form.Item>
+                <Button
+                    type="primary"
+                    icon={<UploadOutlined />}
+                    style={{
+                        backgroundColor: '#FDD741',
+                        border: '2px solid #DFA006',
+                        borderRadius: '4px',
+                        color: '#FFFFFF'
+                    }}
+                    htmlType="submit"
+                > Add</Button>
+            </Form.Item>
+        </Form >
     )
 }
