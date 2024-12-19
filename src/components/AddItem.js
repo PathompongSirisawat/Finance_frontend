@@ -44,7 +44,7 @@ export default function AddItem(props) {
                         backgroundColor: '#FDD741',
                         border: '2px solid #DFA006',
                         borderRadius: '4px',
-                        color: '#FFFFFF'
+                        color: '#000000'
                     }}
                     htmlType="submit"
                 > Add</Button>
